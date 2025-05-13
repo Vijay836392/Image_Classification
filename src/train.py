@@ -1,25 +1,43 @@
-import tensorflow as tf
-from tensorflow.keras.datasets import cifar10
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense
-from tensorflow.keras.utils import to_categorical
+import torch
+import torch.optim as optim
+import torch.nn as nn
+from model import CNNModel
+from data_loader import get_dataloaders
 
-# Load data
-(x_train, y_train), (x_test, y_test) = cifar10.load_data()
-x_train, x_test = x_train / 255.0, x_test / 255.0
-y_train, y_test = to_categorical(y_train), to_categorical(y_test)
+def train():
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-# Build model
-model = Sequential([
-    Conv2D(32, (3,3), activation='relu', input_shape=(32,32,3)),
-    MaxPooling2D((2,2)),
-    Flatten(),
-    Dense(64, activation='relu'),
-    Dense(10, activation='softmax')
-])
+    train_loader, test_loader = get_dataloaders(batch_size=128)
+    model = CNNModel().to(device)
 
-model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+    criterion = nn.CrossEntropyLoss()
+    optimizer = optim.Adam(model.parameters(), lr=0.001)
 
-# Train
-model.fit(x_train, y_train, epochs=10, validation_data=(x_test, y_test))
+    epochs = 20
+    for epoch in range(epochs):
+        model.train()
+        running_loss = 0.0
+        correct = 0
+        total = 0
 
+        for inputs, labels in train_loader:
+            inputs, labels = inputs.to(device), labels.to(device)
+            optimizer.zero_grad()
+
+            outputs = model(inputs)
+            loss = criterion(outputs, labels)
+            loss.backward()
+            optimizer.step()
+
+            running_loss += loss.item()
+            _, predicted = outputs.max(1)
+            total += labels.size(0)
+            correct += predicted.eq(labels).sum().item()
+
+        print(f"Epoch {epoch+1} | Loss: {running_loss/len(train_loader):.4f} | Accuracy: {100 * correct / total:.2f}%")
+
+    torch.save(model.state_dict(), 'cnn_model.pth')
+    print("Training complete. Model saved.")
+
+if __name__ == '__main__':
+    train()
