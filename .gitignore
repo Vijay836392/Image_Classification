@@ -1,0 +1,27 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+***REMOVED***
+*.pyo
+*.pyd
+
+# Virtual environment
+.venv/
+venv/
+env/
+envs/
+
+# Distribution / packaging
+build/
+dist/
+sdist/
+*.egg-info/
+.pytest_cache/
+.coverage
+*.whl
+
+# Log files
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
