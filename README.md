@@ -11,9 +11,9 @@ This project uses the CIFAR-10 dataset to train a CNN model that can classify im
 - `src/`: source code for data preprocessing, model definition, and training
 
 *Getting Started*
-1. Clone the repository: ` https://github.com/Vijay836392/Sample_Project.git`
+1. Clone the repository: ` https://github.com/Vijay836392/Image_Classification.git`
 2. Install dependencies: `pip install -r requirements.txt`
-3. Train the model: `python train.py`
+3. Train the model: `python src/train.py`
 
 *Model Performance*
 - Accuracy: 85%
