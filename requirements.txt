@@ -1,5 +1,4 @@
-tensorflow
-numpy
+torch
+torchvision
 matplotlib
-pandas
-scikit-learn
+numpy
