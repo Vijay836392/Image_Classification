@@ -7,7 +7,6 @@ This project uses the CIFAR-10 dataset to train a CNN model that can classify im
 
 *Structure*
 - `data/`: CIFAR-10 dataset
-- `notebooks/`: Jupyter notebook for data exploration and model training
 - `src/`: source code for data preprocessing, model definition, and training
 
 *Getting Started*
