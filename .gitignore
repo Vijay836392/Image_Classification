@@ -1,28 +1,65 @@
-# Byte-compiled / optimized / DLL files
+# Byte-compiled / cache files
 __pycache__/
-***REMOVED***
-*.pyo
-*.pyd
+*.py[cod]
+*.so
 
 # Virtual environment
-.venv/
 venv/
-env/
-envs/
-data/ 
+.env/
+*.env
+notebooks/
 
-# Distribution / packaging
-build/
-dist/
-sdist/
-*.egg-info/
-.pytest_cache/
-.coverage
-*.whl
+
+# Jupyter Notebook checkpoints
+*.ipynb_checkpoints
 
 # Log files
 *.log
 
-# OS generated files
+# OS-specific files
 .DS_Store
 Thumbs.db
+
+# Large data, model files
+data/
+*.h5
+*.hdf5
+*.pth
+*.ckpt
+*.pt
+*.pb
+*.tflite
+
+# Image or dataset folders (optional, if too big for Git)
+datasets/
+images/
+outputs/
+
+# IDE and editor settings
+.vscode/
+.idea/
+*.swp
+
+# Git itself
+.git/
+
+# Dependency files (if generated)
+pip-wheel-metadata/
+__pypackages__/
+
+# Other temp/cache
+*.tmp
+*.bak
+*.old
+*.out
+
+# Ignore large files/folders
+data/
+outputs/
+*.pt
+*.h5
+*.zip
+*.jpg
+*.png
+*.csv
+
